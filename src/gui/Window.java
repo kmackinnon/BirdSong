@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 public class Window extends JFrame{
 
-	private JFrame frmBirdsong;
+	private JFrame frame;
 	
 	private JPanel abc;
 	private JPanel util;
@@ -23,7 +23,7 @@ public class Window extends JFrame{
 			public void run() {
 				try {
 					Window window = new Window();
-					window.frmBirdsong.setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,20 +42,25 @@ public class Window extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmBirdsong = new JFrame();
-		frmBirdsong.setTitle("BirdSong");
-		frmBirdsong.setBounds(100, 100, 450, 300);
-		frmBirdsong.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = new JFrame("BirdSong");
+		frame.pack();
+		frame.setVisible(true);
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		makePanels();
+		
+		getContentPane().setLayout(new BoxLayout(frame, BoxLayout.Y_AXIS));
+		
+		frame.getContentPane().add(abc, BorderLayout.NORTH);
+		frame.getContentPane().add(util, BorderLayout.SOUTH);
+		frame.getContentPane().add(time, BorderLayout.CENTER);
+	}
+	
+	private void makePanels() {
 		abc = new BirdPanel();
 		util = new UtilityPanel();
 		time = new TimePanel();
-		
-		getContentPane().setLayout(new BoxLayout(frmBirdsong, BoxLayout.Y_AXIS));
-		
-		frmBirdsong.getContentPane().add(abc, BorderLayout.NORTH);
-		frmBirdsong.getContentPane().add(util, BorderLayout.SOUTH);
-		frmBirdsong.getContentPane().add(time, BorderLayout.CENTER);
 	}
 
 }
