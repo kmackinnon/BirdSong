@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,9 +20,13 @@ class TimePanel extends JPanel {
 
 	public TimePanel() {
 		setBackground(Color.pink);
+		
+		// necessary since Date class uses GMT timezone
+		TimeZone gmt= TimeZone.getTimeZone("GMT");
+		TimeZone.setDefault(gmt);
 
 		final long EIGHT_HOURS = 28800000;
-		final SimpleDateFormat sdf = new SimpleDateFormat("hh: mm : ss");
+		final SimpleDateFormat sdf = new SimpleDateFormat("H: mm : ss");
 		clock = new JLabel(sdf.format(new Date(EIGHT_HOURS)), JLabel.CENTER);
 
 		ActionListener al = new ActionListener() {

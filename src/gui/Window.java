@@ -45,11 +45,10 @@ public class Window extends JFrame{
 		frame = new JFrame("BirdSong");
 		frame.pack();
 		frame.setVisible(true);
-		frame.setBounds(100, 100, 400, 300);
+		frame.setBounds(100, 100, 400, 200);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		makePanels();
-		
 		getContentPane().setLayout(new BoxLayout(frame, BoxLayout.Y_AXIS));
 		
 		frame.getContentPane().add(abc, BorderLayout.NORTH);
@@ -59,7 +58,6 @@ public class Window extends JFrame{
 	private void makePanels() {
 		abc = new BirdPanel();
 		time = new TimePanel();
-		//util = new UtilityPanel();
 	}
 
 }

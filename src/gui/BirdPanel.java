@@ -1,6 +1,9 @@
 package gui;
+
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -8,55 +11,77 @@ import javax.swing.JToggleButton;
 
 import birdsong.A;
 import birdsong.B;
+import birdsong.Bird;
 import birdsong.C;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-
 public class BirdPanel extends JPanel {
-	
-	JLabel title;
+
 	private A a;
 	private B b;
 	private C c;
-	
-	private boolean toggleA = false;
-	private boolean toggleB = false;
-	private boolean toggleC = false; 
+
+	private boolean isAOn = false;
+	private boolean isBOn = false;
+	private boolean isCOn = false;
 
 	/**
 	 * Create the panel.
 	 */
 	public BirdPanel() {
-		
 		super(new GridLayout(1, 3)); // 1 row, 3 cols
 		setBackground(Color.green);
+
+		a = new A();
+		b = new B();
+		c = new C();
 		
-		JToggleButton tglbtnA = new JToggleButton("A");
+		addButtons();
+	}
+	
+	public void addButtons() {
+		final JToggleButton tglbtnA = new JToggleButton("A");
 		tglbtnA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				startEnd(a, isAOn);
+				isAOn = !isAOn;
+				tglbtnA.setSelected(isAOn);
+
 			}
 		});
 		add(tglbtnA);
-		
-		JToggleButton tglbtnB = new JToggleButton("B");
-		tglbtnA.addActionListener(new ActionListener() {
+
+		final JToggleButton tglbtnB = new JToggleButton("B");
+		tglbtnB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				startEnd(b, isBOn);
+				isBOn = !isBOn;
+				tglbtnB.setSelected(isBOn);
 			}
 		});
 		add(tglbtnB);
-		
-		JToggleButton tglbtnC = new JToggleButton("C");
-		tglbtnA.addActionListener(new ActionListener() {
+
+		final JToggleButton tglbtnC = new JToggleButton("C");
+		tglbtnC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				startEnd(c, isCOn);
+				isCOn = !isCOn;
+				tglbtnC.setSelected(isCOn);
 			}
 		});
 		add(tglbtnC);
-
+	}
+	
+	/**
+	 * Determines whether the button indicates start or stop to singing.
+	 * @param bird
+	 * @param isPressed
+	 */
+	public void startEnd(Bird bird, boolean isPressed) {
+		if (!isPressed) {
+			bird.startSing();
+		} else {
+			bird.endSing();
+		}
 	}
 
 }

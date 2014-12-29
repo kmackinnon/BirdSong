@@ -24,6 +24,7 @@ public class BirdStats {
 
 	public void incNumSongs() {
 		countSongs++;
+		System.out.println(countSongs);
 	}
 
 	public void setSongDuration(long timeToAdd) {
