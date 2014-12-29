@@ -13,7 +13,7 @@ public class Window extends JFrame{
 	
 	private JPanel abc;
 	private JPanel util;
-	private JPanel time;
+	private TimePanel time;
 
 	/**
 	 * Launch the application.
@@ -45,7 +45,7 @@ public class Window extends JFrame{
 		frame = new JFrame("BirdSong");
 		frame.pack();
 		frame.setVisible(true);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 400, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		makePanels();
@@ -53,14 +53,13 @@ public class Window extends JFrame{
 		getContentPane().setLayout(new BoxLayout(frame, BoxLayout.Y_AXIS));
 		
 		frame.getContentPane().add(abc, BorderLayout.NORTH);
-		frame.getContentPane().add(util, BorderLayout.SOUTH);
 		frame.getContentPane().add(time, BorderLayout.CENTER);
 	}
 	
 	private void makePanels() {
 		abc = new BirdPanel();
-		util = new UtilityPanel();
 		time = new TimePanel();
+		//util = new UtilityPanel();
 	}
 
 }
