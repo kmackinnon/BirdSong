@@ -38,6 +38,18 @@ public class BirdPanel extends JPanel {
 		addButtons();
 	}
 	
+	public A getA() {
+		return a;
+	}
+	
+	public B getB() {
+		return b;
+	}
+	
+	public C getC() {
+		return c;
+	}
+	
 	public void addButtons() {
 		final JToggleButton tglbtnA = new JToggleButton("A");
 		tglbtnA.addActionListener(new ActionListener() {

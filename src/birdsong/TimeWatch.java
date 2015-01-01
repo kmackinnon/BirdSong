@@ -3,20 +3,18 @@ package birdsong;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 
  * @author GHad on StackOverflow
- *
  */
 public class TimeWatch {
 
 	long starts;
 
-	public static TimeWatch start() {
-		return new TimeWatch();
-	}
-
 	private TimeWatch() {
 		reset();
+	}
+
+	public static TimeWatch start() {
+		return new TimeWatch();
 	}
 
 	public TimeWatch reset() {
@@ -26,6 +24,7 @@ public class TimeWatch {
 
 	public long time() {
 		long ends = System.currentTimeMillis();
+		System.out.println(ends - starts);
 		return ends - starts;
 	}
 

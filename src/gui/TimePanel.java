@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import birdsong.Output;
+
 class TimePanel extends JPanel {
 
 	private boolean isStarted = false;
@@ -20,12 +22,12 @@ class TimePanel extends JPanel {
 
 	public TimePanel() {
 		setBackground(Color.pink);
-		
+
 		// necessary since Date class uses GMT timezone
-		TimeZone gmt= TimeZone.getTimeZone("GMT");
+		TimeZone gmt = TimeZone.getTimeZone("GMT");
 		TimeZone.setDefault(gmt);
 
-		final long EIGHT_HOURS = 28800000;
+		final long EIGHT_HOURS = 10000; // 28800000
 		final SimpleDateFormat sdf = new SimpleDateFormat("H: mm : ss");
 		clock = new JLabel(sdf.format(new Date(EIGHT_HOURS)), JLabel.CENTER);
 
@@ -35,6 +37,13 @@ class TimePanel extends JPanel {
 			public void actionPerformed(ActionEvent ae) {
 				clock.setText(sdf.format(new Date(x)));
 				x -= 1000;
+
+				// Time's up
+				if (x == -1000) {
+					timer.stop();
+					System.out.println("Time's Up!");
+					Window.conclude();
+				}
 			}
 		};
 		add(clock);

@@ -2,11 +2,15 @@ package birdsong;
 
 public class A extends Bird{
 	
-	BirdStats stats;
-	TimeWatch watch;
+	private BirdStats stats;
+	private TimeWatch watch; // new watch for each occurrence
 	
 	public A () {
 		stats = new BirdStats();
+	}
+	
+	public BirdStats getStats() {
+		return stats;
 	}
 	
 	public void startSing() {
@@ -15,7 +19,8 @@ public class A extends Bird{
 	}
 	
 	public void endSing() {
-		watch.time(); // time between start and end of singing
+		long duration = watch.time(); // time between start and end of singing
+		stats.incSongDuration(duration);
 	}
 
 }
